@@ -1,5 +1,4 @@
 import React from "react";
-import API from "../../utils/API";
 import { Input, TextArea, FormBtn, FormBtnLeft, FormBtnRight } from "../../components/Form";
 
 
@@ -15,7 +14,7 @@ class SharedSheet extends React.Component {
     let userId = this.props.userId;
     let sheetId = this.props.sheetId;
 
-    window.location.replace("/viewchart/" + sheetId + "/" + userId);
+    window.location.replace("/viewsheet/" + sheetId + "/" + userId);
   }
 
   render() {

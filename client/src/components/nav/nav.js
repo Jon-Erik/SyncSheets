@@ -55,7 +55,7 @@ class HelloBootstrap extends Component {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="/">
-            <img src={Logo}/>
+            <img src={Logo} alt="SyncSheets Logo"/>
           </a>
             {!this.state.userName ? (
               <a href="/login"><p>Login</p></a>

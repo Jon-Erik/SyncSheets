@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import API from "./utils/API.js";
-import Nav from "./components/nav";
+import Nav from "../../components/nav";
 
-class HelloBootstrap extends Component {
+class Welcome extends Component {
 
   render() {
     return (
@@ -29,4 +28,4 @@ class HelloBootstrap extends Component {
   }
 }
 
-export default HelloBootstrap;
+export default Welcome;

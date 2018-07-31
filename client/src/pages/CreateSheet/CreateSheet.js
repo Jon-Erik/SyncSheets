@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API.js"
 import InvoiceModal from "../../components/InvoiceModal";
-import Table from "../../components/Table";
 import { Input, TextArea, FormBtn, FormBtnLeft, FormBtnRight } from "../../components/Form";
 
 class CreateSheet extends Component {
@@ -82,8 +81,8 @@ class CreateSheet extends Component {
       }
     
       viewOtherUsers = () => {
-        API.viewOtherUsers().
-        then((res) => {
+        API.viewOtherUsers()
+        .then((res) => {
           let otherUsers = res.data;
           this.setState({
             otherUsers: otherUsers
@@ -233,7 +232,6 @@ class CreateSheet extends Component {
                             <div className="card-body">
                               <form className="form-inline">
                                 <h5 className="card-title">{this.state.newSheetName}</h5>
-                                  <Table></Table>
                               </form>
                             </div>
                           </div>

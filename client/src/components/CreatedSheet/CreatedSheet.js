@@ -11,8 +11,8 @@ class CreatedSheet extends React.Component {
   }
 
   viewOtherUsers = () => {
-    API.viewOtherUsers().
-    then((res) => {
+    API.viewOtherUsers()
+    .then((res) => {
       let otherUsers = res.data;
       this.setState({
         otherUsers: otherUsers,
@@ -98,7 +98,7 @@ class CreatedSheet extends React.Component {
     let userId = this.props.userId;
     let sheetId = this.props.sheetId;
 
-    window.location.replace("/viewchart/" + sheetId + "/" + userId);
+    window.location.replace("/viewsheet/" + sheetId + "/" + userId);
   }
 
   getSelectedUser = event => {
@@ -122,9 +122,6 @@ class CreatedSheet extends React.Component {
     }
     
     return filteredUsers;
-    this.setState({
-     sheetUsers: filteredUsers
-    })
   }
 
   componentDidMount() {

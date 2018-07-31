@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API.js"
 
 
-class Detail extends Component {
+class Signup extends Component {
 
   state = {
     email: "",
@@ -124,4 +124,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail;
+export default Signup;

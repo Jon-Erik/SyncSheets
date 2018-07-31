@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-export default class Example extends React.Component {
+class TransactionsTable extends React.Component {
     state  = {
         transactions: this.props.transactions
     }
@@ -39,7 +39,6 @@ export default class Example extends React.Component {
               <td>{Transaction.vendorNumber}</td>
               <td>{Transaction.itemNumber}</td>
               <td>{Transaction.creditNumber}</td>
-              <td>{Transaction.debitNumber}</td>
               <td>{Transaction.totalBalance}</td>
               <td>{Transaction.dueDate}</td>
               <td>{Transaction.amountPastDue}</td>
@@ -48,11 +47,12 @@ export default class Example extends React.Component {
               <td>{Transaction.representativeName}</td>
             </tr>
           );
-        })
-        )}
+        }))}
         
         </tbody>
       </Table>
     );
   }
 }
+
+export default TransactionsTable;

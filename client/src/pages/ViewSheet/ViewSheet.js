@@ -5,7 +5,7 @@ import BarChartComponent from "./BarChartComponent";
 import socket from "../../utils/socketAPI";
 
 
-class ViewChart extends Component {
+class ViewSheet extends Component {
 
   state = {
     userName: "",
@@ -174,4 +174,4 @@ class ViewChart extends Component {
     )}
 }
 
-export default ViewChart;
+export default ViewSheet;

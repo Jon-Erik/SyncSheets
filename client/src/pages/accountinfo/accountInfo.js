@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Nav from "../../components/nav";
 import API from "../../utils/API.js";
-import Table from "../../components/Table";
 import { Input, TextArea, FormBtn, FormBtnLeft, FormBtnRight } from "../../components/Form";
 import CreatedSheet from "../../components/CreatedSheet"
 import SharedSheet from "../../components/SharedSheet"
@@ -85,8 +84,8 @@ class AccountInfo extends Component {
   }
 
   viewOtherUsers = () => {
-    API.viewOtherUsers().
-    then((res) => {
+    API.viewOtherUsers()
+    .then((res) => {
       let otherUsers = res.data;
       this.setState({
         otherUsers: otherUsers

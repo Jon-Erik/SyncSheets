@@ -2,9 +2,6 @@ import React from 'react';
 import { Table } from 'reactstrap';
 
 class TransactionsTable extends React.Component {
-    state  = {
-        transactions: this.props.transactions
-    }
 
   render() {
     return (
@@ -26,12 +23,12 @@ class TransactionsTable extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {!this.state.transactions ? (
+        {!this.props.transactions.length ? (
           <tr>
-            <td>no transactions</td>
+            <td><i>No transactions to show at this time.</i></td>
           </tr>
-        ): (
-            this.state.transactions.map(Transaction => {
+        ) : (
+            this.props.transactions.map(Transaction => {
           return (
             <tr>
               <td>{Transaction.companyName}</td>

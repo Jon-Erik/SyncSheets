@@ -3,7 +3,8 @@ import Nav from "../../components/nav";
 import API from "../../utils/API.js";
 import BarChartComponent from "./BarChartComponent";
 import socket from "../../utils/socketAPI";
-
+import TransactionsTable from "../../components/TransactionsTable";
+import { Table } from 'reactstrap';
 
 class ViewSheet extends Component {
 
@@ -168,7 +169,33 @@ class ViewSheet extends Component {
       <div className="container">
         <Nav />
         <div className="jumbotron">
-        <BarChartComponent transactions ={this.state.chartData}/>
+        <h3>{this.state.sheetData.name}</h3>
+        <h6>SyncSheets users with access to this sheet:</h6>
+        <Table>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.collaborators.map(user => (
+              <tr>
+                <th scope="row">{user.User.name}</th>
+                <td>{user.User.email}</td>
+                <td>{!user.userIsCreator ? (
+                    <p>collaborator</p>
+                    ): (
+                    <p>sheet creator</p>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <BarChartComponent transactions={this.state.chartData}/>
+        <TransactionsTable transactions={this.state.transactions}/>
       </div>
     </div>
     )}

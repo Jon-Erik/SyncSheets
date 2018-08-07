@@ -4,6 +4,7 @@ import API from "../../utils/API.js";
 import BarChartComponent from "./BarChartComponent";
 import socket from "../../utils/socketAPI";
 import TransactionsTable from "../../components/TransactionsTable";
+import TransactionForm from "../../components/TransactionForm";
 import { Table } from 'reactstrap';
 
 class ViewSheet extends Component {
@@ -196,6 +197,8 @@ class ViewSheet extends Component {
         </Table>
         <BarChartComponent transactions={this.state.chartData}/>
         <TransactionsTable transactions={this.state.transactions}/>
+        <TransactionForm userName={this.state.userName}
+                         sheetId={this.state.sheetData.id}/>
       </div>
     </div>
     )}

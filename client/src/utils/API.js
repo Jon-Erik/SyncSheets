@@ -50,7 +50,7 @@ export default {
 	},
 
 	createTransaction: function(sheetData) {
-		return axios.get("/api/createtransaction", sheetData);
+		return axios.post("/api/createtransaction", sheetData);
 	},
 
 	viewSheet: function(sheetData) {

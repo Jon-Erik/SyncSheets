@@ -203,30 +203,15 @@ router.delete("/withdrawaccess/:sheetId/:otherUserId/:creatorUserId", function(r
  	});
 });
 
-router.post("/createtransaction", function(req, res) {
+router.post("/test", function(req, res){
 	console.log(req.body);
+}) 
 
-	//format for dummy data to submit via insomnia/postman:
-	// {
-	// 	"companyName": "Bob",
-	// 	"invoiceNumber": "002023",
-	// 	"vendorNumber": "23134",
-	// 	"itemNumber": 345634,
-	// 	"creditNumber": "34jk1343",
-	// 	"totalBalance": 123.23,
-	// 	"dueDate": "2018-07-11 13:38:58",
-	// 	"amountPastDue": "2018-07-11 13:38:58",
-	// 	"departmentName": "Sales",
-	// 	"locationName": "City of choice",
-	// 	"representativeName": "Bobby Jr",
-	// 	"sheetId": 1
-	// }
+router.post("/createtransaction", function(req, res) {
 
-	//*When this is really working, companyName will be equivalent to the name of the user who is creating the transaction. So something like:
-	//let companyName = req.user.name
-
+	console.log(req.body);
   db.Transaction.create({
-			companyName: req.body.companyName,//in production, req.user.name
+			companyName: req.body.companyName,
 		 	invoiceNumber: req.body.invoiceNumber,
 			vendorNumber: req.body.vendorNumber,
 			itemNumber: req.body.itemNumber,

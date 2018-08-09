@@ -7,7 +7,6 @@ class TransactionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyName: this.props.userName,
       invoiceNumber: "",
       vendorNumber: "",
       itemNumber: "",
@@ -18,7 +17,6 @@ class TransactionForm extends React.Component {
       departmentName: "",
       locationName: "",
       representativeName: "",
-      sheetId: this.props.sheetId
     }
   }
 
@@ -33,7 +31,7 @@ class TransactionForm extends React.Component {
   submitTransaction = event => {
 
     let sheetData = {
-      companyName: this.state.companyName,
+      companyName: this.props.userName,
       invoiceNumber: this.state.invoiceNumber,
       vendorNumber: this.state.vendorNumber,
       itemNumber: this.state.itemNumber,
@@ -44,10 +42,19 @@ class TransactionForm extends React.Component {
       departmentName: this.state.departmentName,
       locationName: this.state.locationName,
       representativeName: this.state.representativeName,
-      sheetId: this.state.sheetId
+      sheetId: this.props.sheetId
     }
 
     console.log(sheetData);
+
+    API.createTransaction(sheetData)
+    .then((res) => {
+      console.log(res);
+      alert("Your transaction posted successfully.");
+    }).catch((err) => {
+      console.log(err);
+      alert("There was an error posting your new transaction. Please try again.")
+    })
   }
 
   render() {
@@ -56,8 +63,7 @@ class TransactionForm extends React.Component {
         <h5>Create a Transaction with this form:</h5>
         <Form>
           <FormGroup>
-              <Label>Company/User Name</Label>
-              <p><b>{this.state.companyName}</b></p>
+              <Label>Company/User Name:<p><b>{this.props.userName}</b></p></Label>
           </FormGroup>
           <FormGroup>
               <Label>Invoice Number <i>(alphanumeric characters accepted)</i></Label>

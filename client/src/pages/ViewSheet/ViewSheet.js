@@ -111,7 +111,7 @@ class ViewSheet extends Component {
       });
 
       console.log("here is the sheet data ----------")
-      console.log(this.state.sheetData);
+      console.log(this.state.sheetData.id);
     }).catch((err) => {
       console.log(err);
     })
@@ -120,10 +120,6 @@ class ViewSheet extends Component {
   transChanged = (trans) => {
     let pathArray = window.location.pathname.split("/");
     let URLSheetId = pathArray[2];
-    
-    // console.log(URLSheetId);
-    // console.log(trans.sheetId);
-    // console.log(parseInt(trans.sheetId) == URLSheetId)
 
     if (parseInt(trans.sheetId) == URLSheetId) {
       console.log("match")
@@ -131,7 +127,7 @@ class ViewSheet extends Component {
       this.setState({
         transactions: updatedTransactions
       })
-      alert("New transaction for this sheet");
+      alert("A new transaction has been created or a transaction has been deleted for this sheet.");
       this.viewSheet();
     }
   }
@@ -196,7 +192,10 @@ class ViewSheet extends Component {
           </tbody>
         </Table>
         <BarChartComponent transactions={this.state.chartData}/>
-        <TransactionsTable transactions={this.state.transactions}/>
+        <TransactionsTable transactions={this.state.transactions}
+                           userName={this.state.userName}
+                           userId={this.state.userId}
+                           sheetId={this.state.sheetData.id}/>
         <TransactionForm userName={this.state.userName}
                          sheetId={this.state.sheetData.id}/>
       </div>

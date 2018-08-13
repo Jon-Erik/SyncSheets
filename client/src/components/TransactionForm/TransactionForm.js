@@ -42,7 +42,8 @@ class TransactionForm extends React.Component {
       departmentName: this.state.departmentName,
       locationName: this.state.locationName,
       representativeName: this.state.representativeName,
-      sheetId: this.props.sheetId
+      sheetId: this.props.sheetId,
+      userId: this.props.userId
     }
 
     console.log(sheetData);

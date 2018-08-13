@@ -2,7 +2,7 @@ const db = require("./models");
 
 module.exports = function(wss) {
 	db.Transaction.addHook("afterSave", liveUpdate);
-	db.Transaction.addHook("afterDestroy", liveUpdate);
+	db.Transaction.addHook("beforeDestroy", liveUpdate);
 
 	wss.on("connection", () => console.log("Socket connected"))
 

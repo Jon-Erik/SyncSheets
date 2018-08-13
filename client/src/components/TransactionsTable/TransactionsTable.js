@@ -8,7 +8,7 @@ class TransactionsTable extends React.Component {
 
     let transactionData = {
       sheetId: this.props.sheetId,
-      transactionId: this.event.target.id,
+      transactionId: event.target.id,
       userId: this.props.userId
     }
 
@@ -49,7 +49,7 @@ class TransactionsTable extends React.Component {
         ) : (
             this.props.transactions.map(Transaction => {
           return (
-            <tr>
+            <tr key={Transaction.id}>
               <td>{Transaction.companyName}</td>
               <td>{Transaction.invoiceNumber}</td>
               <td>{Transaction.vendorNumber}</td>

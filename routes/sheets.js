@@ -208,35 +208,62 @@ router.post("/test", function(req, res){
 }) 
 
 router.post("/createtransaction", function(req, res) {
-
 	console.log(req.body);
-  db.Transaction.create({
-			companyName: req.body.companyName,
-		 	invoiceNumber: req.body.invoiceNumber,
-			vendorNumber: req.body.vendorNumber,
-			itemNumber: req.body.itemNumber,
-			creditNumber: req.body.creditNumber,
-			totalBalance: req.body.totalBalance,
-			dueDate: req.body.dueDate,
-			amountPastDue: req.body.amountPastDue,
-			departmentName: req.body.departmentName,
-			locationName: req.body.locationName,
-			representativeName: req.body.representativeName,
-			sheetId: req.body.sheetId
-	}).then(function(dbTransaction) {
-		console.log("new transaction created");
-		res.status(200).send("new transaction created");
-	}).catch(function (err) {
-		console.log(err);
-		res.status(500).send("server error")
-	});
+	let sessionUserId = req.user.id;
+	let requestUserId = parseInt(req.body.userId);
+	console.log(sessionUserId, typeof sessionUserId);
+	console.log(requestUserId, typeof requestUserId);
+
+	if (sessionUserId !== requestUserId) {
+		console.log('user ids do not match')
+		res.status(401).send("session user id and request user id do not match");
+		return;
+	}
+	
+	db.UserSheet.findOne({
+ 		where: {
+ 			userId: req.user.id,
+ 			sheetId: req.body.sheetId,
+ 			userIsCreator: true
+ 		}
+ 	}).then(function(result) {
+
+	 		db.Transaction.create({
+				companyName: req.body.companyName,
+			 	invoiceNumber: req.body.invoiceNumber,
+				vendorNumber: req.body.vendorNumber,
+				itemNumber: req.body.itemNumber,
+				creditNumber: req.body.creditNumber,
+				totalBalance: req.body.totalBalance,
+				dueDate: req.body.dueDate,
+				amountPastDue: req.body.amountPastDue,
+				departmentName: req.body.departmentName,
+				locationName: req.body.locationName,
+				representativeName: req.body.representativeName,
+				sheetId: req.body.sheetId
+		}).then(function(dbTransaction) {
+			console.log("new transaction created");
+			res.status(200).send("new transaction created");
+		}).catch(function (err) {
+			console.log(err);
+			res.status(500).send("server error")
+		});
+
+ 	}).catch(function(err) {
+ 		console.log("User does not have access to this sheet");
+ 		console.log(err);
+		res.json(err);
+ 	});
 });
+
+	//console.log(req.body);
+  
 
 router.delete("/deletetransaction/:sheetId/:transactionId/:userId", function(req, res) {
 	
 	//Check to see if the user is signed in with the same userid in the URL
 	let sessionUserId = req.user.id;//*make sure this works later on*
-	let requestUserId = req.params.userId;
+	let requestUserId = parseInt(req.params.userId);
 
 	if (sessionUserId !== requestUserId) {
 		console.log('user ids do not match')
@@ -467,4 +494,5 @@ router.delete("/deletesheet/:sheetId/:userId/", function(req, res) {
 		res.json(err);
 	})
 });
+
 module.exports = router;

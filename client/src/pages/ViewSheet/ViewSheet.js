@@ -197,7 +197,8 @@ class ViewSheet extends Component {
                            userId={this.state.userId}
                            sheetId={this.state.sheetData.id}/>
         <TransactionForm userName={this.state.userName}
-                         sheetId={this.state.sheetData.id}/>
+                         sheetId={this.state.sheetData.id}
+                         userId={this.state.userId}/>
       </div>
     </div>
     )}

@@ -67,7 +67,7 @@ export default {
 
 	deleteTransaction: function(transactionData) {
 		return axios.delete("/api/deletetransaction/"+ transactionData.sheetId + "/" + 
-			transactionData.transactionId + "/" + transactionData.userId)
+			transactionData.transactionId + "/" + transactionData.userId, {credentials: 'include'})
 	},
 
 	deleteSheet: function(sheetData) {

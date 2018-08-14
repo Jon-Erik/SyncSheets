@@ -211,8 +211,6 @@ router.post("/createtransaction", function(req, res) {
 	console.log(req.body);
 	let sessionUserId = req.user.id;
 	let requestUserId = parseInt(req.body.userId);
-	console.log(sessionUserId, typeof sessionUserId);
-	console.log(requestUserId, typeof requestUserId);
 
 	if (sessionUserId !== requestUserId) {
 		console.log('user ids do not match')

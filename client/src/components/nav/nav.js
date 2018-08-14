@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API.js";
 import Logo from "../../assets/images/eliteSheetsLogo.png";
 
-class HelloBootstrap extends Component {
+class Nav extends Component {
   
   state = {
     userName: "",
@@ -53,66 +53,35 @@ class HelloBootstrap extends Component {
 
   render() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="/">
-            <img src={Logo} alt="SyncSheets Logo"/>
-          </a>
-            {!this.state.userName ? (
-              <a href="/login"><p>Login</p></a>
+      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="/">SyncSheets</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              {!this.state.userName ? (
+                <a class="nav-link" href="/login">Login</a>
               ) : (
-              <div>
-                <p>Welcome, {this.state.userName}</p>
-                <p>Email: {this.state.userEmail}</p>
-                <button onClick={this.logout}>Log Out</button>
-              </div>)}
-          <button
-            className="navbar-toggler"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="/">
-                  Home <span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="/"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  User
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="/login">
-                    Login
-                  </a>
-                  <a className="dropdown-item" href="/signup">
-                    Sign up
-                  </a>
-                  <div className="dropdown-divider" />
-                  <a className="dropdown-item" href="/accountinfo">
-                    Account Info
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav> 
+                <a class="nav-link" href="/accountinfo">Welcome, {this.state.userName}</a>
+              )}
+            </li>
+            <li class="nav-item">
+              {!this.state.userName ? (
+                <a class="nav-link" href="/signup">Sign Up</a>
+              ) : (
+                <a class="nav-link" href="/accountinfo">Account Info</a>
+              )}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" onClick={this.logout}>Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     );
   }
 }
 
-export default HelloBootstrap;
+export default Nav;
